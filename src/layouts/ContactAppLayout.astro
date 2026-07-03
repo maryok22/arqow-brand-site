@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Support Arqow",
+  description = "Contactez l’équipe Arqow.",
+  canonical = "https://arqow.com/contact/"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr-CH">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/assets/icon.png" />
+    <meta name="theme-color" content="#1A7A52" />
+  </head>
+  <body class="contact-app-body">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout
+  title="Portail client professionnel en Suisse — Arqow"
+  description="Créez un portail client professionnel pour vos dossiers immobiliers : documents, validations, messages et historique. Solution suisse pour régies et architectes."
+  canonical="https://arqow.com/portail-client/"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container" style="max-width:940px">
+        <p class="kicker">Portail client</p>
+        <h1 class="page-title">Portail client professionnel</h1>
+        <p class="lead">Offrez à chaque client un espace dédié : dossiers, pièces à consulter, validations et échanges — sans disperser l’information par email.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://app.arqow.com/register">Créer mon portail</a>
+          <a class="btn secondary" href="/#essayer">Voir comment essayer</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

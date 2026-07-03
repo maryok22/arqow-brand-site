@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout
+  title="Tarifs Arqow — Portail client dès 59 CHF/mois | Essai gratuit"
+  description="Tarifs Arqow en Suisse : Essentiel 59 CHF/mois, Pro 119 CHF/mois. Premier mois gratuit, sans carte bancaire. Portail client pour régies et architectes."
+  canonical="https://arqow.com/tarifs/"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container" style="max-width:940px">
+        <p class="kicker">Tarifs</p>
+        <h1 class="page-title">Tarifs Arqow en Suisse</h1>
+        <p class="lead">Premier mois gratuit, sans carte bancaire. Deux offres claires pour lancer votre portail client professionnel.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://app.arqow.com/register">Essayer gratuitement</a>
+          <a class="btn secondary" href="/#prix">Voir le détail des offres</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

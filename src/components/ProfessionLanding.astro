@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+
+const {
+  title,
+  description,
+  canonical,
+  kicker,
+  headline,
+  lead,
+  pains,
+  workflow,
+  examples
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Header />
+  <main>
+    <section class="page-hero container">
+      <p class="kicker">{kicker}</p>
+      <h1 class="page-title">{headline}</h1>
+      <p class="lead">{lead}</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://app.arqow.com/register">Essayer gratuitement</a>
+        <a class="btn secondary" href="/#decouvrir">Découvrir</a>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="container">
+        <p class="kicker">Le quotidien</p>
+        <h2 class="section-title">Ce qui vous ralentit aujourd’hui.</h2>
+        <div class="clean-list niche-pains">
+          {pains.map((item, index) => (
+            <div class="clean-item">
+              <span>{index + 1}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" data-reveal>
+      <div class="container">
+        <p class="kicker">Avec Arqow</p>
+        <h2 class="section-title">Un dossier qui avance sans relance inutile.</h2>
+        <div class="workflow-grid">
+          {workflow.map((item) => (
+            <article class="workflow-card">
+              <time>{item.time}</time>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="container">
+        <p class="kicker">Cas concrets</p>
+        <h2 class="section-title">Ce que vos clients voient.</h2>
+        <div class="example-grid">
+          {examples.map((item) => (
+            <article class="example-card">
+              <span class="label">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <div class="page-cta">
+          <a class="btn primary" href="https://app.arqow.com/register">Démarrer l’essai gratuit</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script>
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</BaseLayout>

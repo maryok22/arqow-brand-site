@@ -1,0 +1,28 @@
+---
+import ProfessionLanding from "../components/ProfessionLanding.astro";
+---
+
+<ProfessionLanding
+  title="Portail client pour courtier immobilier — Arqow"
+  description="Professionnalisez le suivi vendeur et acheteur avec un portail client simple, clair et sécurisé pour courtiers immobiliers."
+  canonical="https://arqow.com/courtier-immobilier/"
+  kicker="Courtiers immobiliers"
+  headline="Un dossier vente propre, du vendeur à l’acheteur."
+  lead="Centralisez pièces, documents et échanges dans un espace client structuré — pour rassurer vos clients et gagner en crédibilité."
+  pains={[
+    { title: "Les pièces acheteur-vendeur s’éparpillent", text: "Diagnostics, offres, documents administratifs : difficile de garder une vue claire par transaction." },
+    { title: "Les clients demandent sans cesse des nouvelles", text: "« Où en est mon dossier ? » — parce qu’ils n’ont pas un accès simple à l’information." },
+    { title: "L’image de votre agence en dépend", text: "Un courtier premium mérite un suivi client à la hauteur, pas des emails en vrac." }
+  ]}
+  workflow={[
+    { time: "Étape 1", title: "Ouvrir le dossier transaction", text: "Vendeur ou acheteur dispose d’un espace dédié à sa transaction." },
+    { time: "Étape 2", title: "Partager les pièces", text: "Documents publiés au bon endroit, avec statut et historique." },
+    { time: "Étape 3", title: "Suivre les demandes", text: "Questions et demandes arrivent structurées, sans se perdre dans la boîte mail." },
+    { time: "Étape 4", title: "Clôturer proprement", text: "Export complet du dossier pour votre archivage une fois la transaction finalisée." }
+  ]}
+  examples={[
+    { label: "Vendeur", title: "Dossier mise en vente", text: "Le vendeur suit les pièces, les validations et les échanges depuis un seul espace." },
+    { label: "Acheteur", title: "Suivi de transaction", text: "L’acheteur sait quels documents consulter et quelles actions effectuer." },
+    { label: "Équipe", title: "Vue interne claire", text: "Votre équipe voit l’activité client sans reconstituer l’historique manuellement." }
+  ]}
+/>

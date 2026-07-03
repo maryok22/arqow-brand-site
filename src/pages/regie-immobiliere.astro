@@ -1,0 +1,28 @@
+---
+import ProfessionLanding from "../components/ProfessionLanding.astro";
+---
+
+<ProfessionLanding
+  title="Portail client pour régie immobilière — Arqow"
+  description="Centralisez mandats, documents propriétaires, demandes locataires et validations dans un portail client professionnel pour régies immobilières suisses."
+  canonical="https://arqow.com/regie-immobiliere/"
+  kicker="Régies immobilières"
+  headline="Moins d’emails. Plus de clarté avec vos propriétaires."
+  lead="Arqow regroupe mandats, avenants, demandes et échanges dans un espace client à l’image de votre régie — sans remplacer votre logiciel métier."
+  pains={[
+    { title: "Les mandats et avenants se perdent dans les fils", text: "Contrats, avenants et pièces propriétaires finissent éparpillés entre emails, téléphone et dossiers papier." },
+    { title: "Les relances consomment du temps", text: "Votre équipe ne sait pas toujours si un document a été lu, compris ou validé." },
+    { title: "L’expérience client ne reflète pas votre sérieux", text: "Vos propriétaires méritent un accès structuré, pas un transfert de PDF en pièce jointe." }
+  ]}
+  workflow={[
+    { time: "Étape 1", title: "Publier la pièce", text: "Un mandat ou un avenant est mis à disposition dans le dossier du propriétaire." },
+    { time: "Étape 2", title: "Suivre la consultation", text: "Votre équipe voit quand le document est ouvert depuis l’espace client." },
+    { time: "Étape 3", title: "Répondre au bon endroit", text: "La question du propriétaire arrive dans le dossier concerné, pas dans un email générique." },
+    { time: "Étape 4", title: "Valider et archiver", text: "La validation est enregistrée avec l’historique. Export possible à tout moment." }
+  ]}
+  examples={[
+    { label: "Mandat", title: "Mandat de gestion annuel", text: "Le propriétaire consulte, pose une question et valide la version finale depuis son espace." },
+    { label: "Demande", title: "Travaux ou autorisation", text: "Une demande arrive catégorisée, reliée au bon bien et suivie avec un statut clair." },
+    { label: "Archive", title: "Export dossier propriétaire", text: "Documents, messages et journal d’activité exportables en ZIP pour votre archivage interne." }
+  ]}
+/>

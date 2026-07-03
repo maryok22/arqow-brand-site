@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { publisher, arqow } from "../data/legal.ts";
+---
+
+<BaseLayout
+  title="Politique de confidentialité — Arqow"
+  description="Politique de confidentialité d'Arqow : traitement des données, droits des utilisateurs, hébergement en Suisse et conformité nLPD."
+  canonical="https://arqow.com/confidentialite/"
+>
+  <Header />
+  <main>
+    <section class="section legal-page">
+      <div class="container legal-content">
+        <p class="kicker">Légal</p>
+        <h1 class="page-title">Politique de confidentialité</h1>
+        <p class="lead">
+          {publisher.brand}, éditeur de {arqow.name}, accorde une importance particulière
+          à la protection des données personnelles conformément à la législation suisse (nLPD) et, le cas échéant, au RGPD.
+        </p>
+
+        <h2>Responsable du traitement</h2>
+        <p>
+          <strong>{publisher.brand}</strong><br />
+          {publisher.address}<br />
+          Email : <a href={`mailto:${publisher.privacyEmail}`}>{publisher.privacyEmail}</a><br />
+          <a href="/mentions-legales/">Raison sociale et informations légales</a>
+        </p>
+
+        <h2>Données collectées</h2>
+        <ul>
+          <li>Données d’identification et de compte (nom, email, entreprise)</li>
+          <li>Données d’utilisation du service Arqow (dossiers, documents, messages, journaux techniques)</li>
+          <li>Données transmises via les formulaires du site (contact, essai, support)</li>
+          <li>Données techniques (adresse IP, logs, navigateur, sécurité)</li>
+        </ul>
+
+        <h2>Finalités du traitement</h2>
+        <ul>
+          <li>Fourniture et amélioration du service Arqow</li>
+          <li>Support client et accompagnement</li>
+          <li>Sécurité, prévention des abus et maintenance</li>
+          <li>Respect des obligations légales et contractuelles</li>
+          <li>Communication liée au service (notifications, réponses aux demandes)</li>
+        </ul>
+
+        <h2>Base légale</h2>
+        <p>
+          Le traitement repose notamment sur l’exécution du contrat, l’intérêt légitime de sécuriser et faire
+          fonctionner le service, et le consentement lorsque requis (formulaires, cookies non essentiels le cas échéant).
+        </p>
+
+        <h2>Hébergement et sous-traitants</h2>
+        <p>
+          Les données sont principalement hébergées en Suisse via <strong>{publisher.host}</strong> ({publisher.hostAddress}).
+          {publisher.brand} peut faire appel à des prestataires techniques (email, support, infrastructure).
+          Tout transfert hors de Suisse est encadré par des garanties contractuelles appropriées.
+        </p>
+
+        <h2>Conservation</h2>
+        <ul>
+          <li>Données de compte : durée d’utilisation du service et obligations légales applicables</li>
+          <li>Données de contact / prospection : 3 ans maximum à compter du dernier échange</li>
+          <li>Logs techniques : durée limitée au besoin de sécurité et de maintenance</li>
+        </ul>
+
+        <h2>Vos droits</h2>
+        <p>
+          Vous pouvez demander l’accès, la rectification, l’effacement, la limitation du traitement ou vous opposer
+          à certains traitements, dans les limites prévues par la loi. Contact : <a href={`mailto:${publisher.privacyEmail}`}>{publisher.privacyEmail}</a>.
+          Vous pouvez également introduire une réclamation auprès du Préposé fédéral à la protection des données et à la transparence (PFPDT).
+        </p>
+
+        <h2>Export et portabilité</h2>
+        <p>
+          Arqow permet l’export de vos données (ZIP par dossier ou client). Vous restez propriétaire des contenus
+          que vous importez dans le service.
+        </p>
+
+        <h2>Sécurité</h2>
+        <p>
+          {publisher.brand} met en œuvre des mesures techniques et organisationnelles raisonnables pour protéger
+          les données contre l’accès non autorisé, la perte ou l’altération. Aucune méthode de transmission ou de
+          stockage n’offre toutefois une sécurité absolue.
+        </p>
+
+        <h2>Limitation de responsabilité</h2>
+        <p>
+          Dans les limites autorisées par le droit applicable, {publisher.brand} ne saurait être tenue responsable
+          des conséquences résultant d’un usage non conforme du service par l’utilisateur, d’une divulgation volontaire
+          de données par l’utilisateur à des tiers, ou d’événements indépendants de sa volonté raisonnable
+          (force majeure, défaillance de réseau, acte d’un tiers).
+        </p>
+
+        <h2>Politique complémentaire EvoSwiss</h2>
+        <p>
+          Pour plus d’informations sur les pratiques générales de {publisher.brand}, consultez également la
+          <a href="https://evoswiss.ch/privacy-policy" target="_blank" rel="noopener">politique de confidentialité EvoSwiss</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

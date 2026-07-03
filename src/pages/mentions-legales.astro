@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { publisher, arqow } from "../data/legal.ts";
+---
+
+<BaseLayout
+  title="Mentions légales — Arqow"
+  description="Mentions légales du site arqow.com et du service Arqow, édité par EvoSwiss."
+  canonical="https://arqow.com/mentions-legales/"
+>
+  <Header />
+  <main>
+    <section class="section legal-page">
+      <div class="container legal-content">
+        <p class="kicker">Légal</p>
+        <h1 class="page-title">Mentions légales</h1>
+        <p class="lead">Informations relatives au site {arqow.site} et au service {arqow.name}.</p>
+
+        <h2>Éditeur du service Arqow</h2>
+        <p>
+          Le service {arqow.name} est édité par <strong>{publisher.brand}</strong>.
+        </p>
+        <p>
+          Raison sociale : <strong>{publisher.legalName}</strong><br />
+          Forme juridique : {publisher.form}<br />
+          Siège : {publisher.address}<br />
+          Immatriculée au registre du commerce de Genève<br />
+          UID (TVA) : {publisher.uid}<br />
+          CH-ID : {publisher.chId}<br />
+          EHRA-ID : {publisher.ehraId}
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Téléphone : {publisher.phone}<br />
+          Email Arqow : <a href={`mailto:${arqow.contactEmail}`}>{arqow.contactEmail}</a><br />
+          Email {publisher.brand} : <a href={`mailto:${publisher.email}`}>{publisher.email}</a><br />
+          Site : <a href={publisher.website} target="_blank" rel="noopener">{publisher.website}</a>
+        </p>
+
+        <h2>Objet du service</h2>
+        <p>
+          {arqow.name} est un logiciel en tant que service (SaaS) de portail client destiné aux professionnels
+          de l’immobilier et métiers connexes en Suisse. Le service permet de centraliser dossiers, documents,
+          validations et échanges clients.
+        </p>
+
+        <h2>Hébergement</h2>
+        <p>
+          Le site {arqow.site} et l’application {arqow.app} sont hébergés par <strong>{publisher.host}</strong>,
+          {publisher.hostAddress}. Localisation des serveurs : Suisse.
+        </p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L’ensemble des éléments composant le site et le service {arqow.name} (textes, visuels, structure,
+          logiciels, marques, logos) est protégé par le droit de la propriété intellectuelle.
+          Toute reproduction, représentation ou exploitation non autorisée est interdite sans accord écrit préalable de {publisher.brand}.
+        </p>
+
+        <h2>Limitation de responsabilité</h2>
+        <p>
+          {publisher.brand} met en œuvre les moyens raisonnables pour assurer l’accessibilité et le bon fonctionnement
+          du site et du service. Toutefois, le service est fourni « en l’état » et « selon disponibilité ».
+        </p>
+        <p>
+          Dans les limites autorisées par le droit suisse, {publisher.brand} décline toute responsabilité pour :
+          interruptions temporaires, pertes de données imputables à l’utilisateur ou à des tiers,
+          dommages indirects, pertes d’exploitation, manque à gagner, ou préjudices résultant d’une utilisation
+          non conforme du service.
+        </p>
+        <p>
+          L’utilisateur reste seul responsable des contenus publiés, des accès accordés à ses clients et de la
+          conformité de son usage du service avec la réglementation applicable à son activité professionnelle.
+        </p>
+
+        <h2>Liens externes</h2>
+        <p>
+          Le site peut contenir des liens vers des sites tiers. {publisher.brand} n’exerce aucun contrôle
+          sur ces sites et décline toute responsabilité quant à leur contenu ou leurs pratiques.
+        </p>
+
+        <h2>Droit applicable et for</h2>
+        <p>
+          Les présentes mentions sont régies par le droit suisse. Tout litige relatif au site ou au service
+          {arqow.name} relève de la compétence exclusive des tribunaux de {publisher.jurisdiction},
+          sous réserve de dispositions légales impératives.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

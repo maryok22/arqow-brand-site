@@ -1,0 +1,339 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { auditFaq } from "../../data/audit-faq.ts";
+
+const title = "Audit maturité numérique relation client — Régies & immobilier | Arqow";
+const description =
+  "Évaluez gratuitement la maturité numérique de votre relation client : documents, validations, communication et image professionnelle. Audit en 2 minutes pour régies, architectes et professionnels de l'immobilier en Suisse.";
+const canonical = "https://arqow.com/audit/";
+
+const auditSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Arqow", item: "https://arqow.com/" },
+      { "@type": "ListItem", position: 2, name: "Audit maturité numérique", item: canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Audit de maturité numérique Arqow",
+    url: canonical,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "CHF" },
+    description,
+    inLanguage: "fr-CH",
+    provider: { "@type": "Organization", name: "EvoSwiss", url: "https://evoswiss.ch" },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Régies immobilières, architectes, courtiers, administrateurs PPE",
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  faqItems={auditFaq}
+  extraJsonLd={auditSchema}
+>
+  <Header />
+  <main>
+    <section class="section audit-page">
+      <div class="container audit-shell">
+        <div class="audit-app" id="audit-app">
+          <div class="audit-panel is-active" data-panel="intro">
+            <p class="kicker">Audit métier</p>
+            <h1 class="audit-title">Votre relation client est-elle vraiment professionnelle ?</h1>
+            <p class="audit-lead">
+              Répondez à 12 questions en moins de 2 minutes et obtenez un rapport personnalisé
+              sur votre organisation — sans formulaire commercial.
+            </p>
+            <ul class="audit-promise">
+              <li>4 scores distincts (documents, communication, image, efficacité)</li>
+              <li>Axes d’amélioration concrets, adaptés à votre situation</li>
+              <li>Estimation du potentiel de gain de temps</li>
+            </ul>
+            <button class="btn primary" type="button" id="audit-start">Commencer l’audit</button>
+            <p class="audit-meta">12 questions · environ 2 minutes · 100 % anonyme</p>
+          </div>
+
+          <div class="audit-panel" data-panel="questions" hidden>
+            <div class="audit-progress" aria-hidden="true">
+              <div class="audit-progress-bar" id="audit-progress-bar"></div>
+            </div>
+            <p class="audit-step-label" id="audit-step-label">Question 1 / 12</p>
+            <h2 class="audit-question" id="audit-question"></h2>
+            <div class="audit-options" id="audit-options" role="group"></div>
+            <div class="audit-actions">
+              <button class="wizard-back" type="button" id="audit-back">← Retour</button>
+              <button class="btn primary" type="button" id="audit-next" hidden>Continuer</button>
+            </div>
+          </div>
+
+          <div class="audit-panel" data-panel="results" hidden>
+            <p class="kicker">Votre rapport</p>
+            <h2 class="audit-title">Votre maturité numérique</h2>
+
+            <div class="audit-score-hero">
+              <div class="audit-score-big" id="result-overall">—</div>
+              <div class="audit-score-bar" id="result-bar" aria-hidden="true"></div>
+              <p class="audit-level" id="result-level"></p>
+              <p class="audit-summary" id="result-summary"></p>
+            </div>
+
+            <div class="audit-dimensions" id="result-dimensions"></div>
+
+            <div class="audit-result-grid">
+              <article class="audit-result-card">
+                <h3>Vos points forts</h3>
+                <ul id="result-strengths"></ul>
+              </article>
+              <article class="audit-result-card warn">
+                <h3>Vos principaux axes d’amélioration</h3>
+                <ul id="result-improvements"></ul>
+              </article>
+            </div>
+
+            <article class="audit-result-card highlight">
+              <h3>Estimation du potentiel</h3>
+              <p id="result-potential"></p>
+              <ul class="audit-potential-list">
+                <li>Une expérience client plus professionnelle</li>
+                <li>Une réduction importante des demandes liées aux documents</li>
+                <li>Des équipes moins sollicitées pour les tâches répétitives</li>
+              </ul>
+            </article>
+
+            <blockquote class="audit-recommendation" id="result-recommendation"></blockquote>
+            <p class="audit-priority" id="result-priority"></p>
+
+            <div class="audit-cta-row">
+              <a class="btn primary" href="https://app.arqow.com/register">Découvrir Arqow</a>
+              <button class="btn secondary" type="button" id="audit-restart">Refaire l’audit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    import { auditQuestions } from "../../lib/audit-data.ts";
+    import { computeAuditResult } from "../../lib/audit-scoring.ts";
+
+    const app = document.getElementById("audit-app");
+    const panels = {
+      intro: app?.querySelector('[data-panel="intro"]'),
+      questions: app?.querySelector('[data-panel="questions"]'),
+      results: app?.querySelector('[data-panel="results"]'),
+    };
+
+    const els = {
+      progressBar: document.getElementById("audit-progress-bar"),
+      stepLabel: document.getElementById("audit-step-label"),
+      question: document.getElementById("audit-question"),
+      options: document.getElementById("audit-options"),
+      next: document.getElementById("audit-next"),
+      back: document.getElementById("audit-back"),
+      overall: document.getElementById("result-overall"),
+      bar: document.getElementById("result-bar"),
+      level: document.getElementById("result-level"),
+      summary: document.getElementById("result-summary"),
+      dimensions: document.getElementById("result-dimensions"),
+      strengths: document.getElementById("result-strengths"),
+      improvements: document.getElementById("result-improvements"),
+      potential: document.getElementById("result-potential"),
+      recommendation: document.getElementById("result-recommendation"),
+      priority: document.getElementById("result-priority"),
+    };
+
+    const dimensionLabels = {
+      docs: "Organisation documentaire",
+      comms: "Communication client",
+      image: "Image professionnelle",
+      ops: "Efficacité opérationnelle",
+    };
+
+    let step = 0;
+    const answers = {};
+
+    function showPanel(name) {
+      Object.entries(panels).forEach(([key, panel]) => {
+        if (!panel) return;
+        const active = key === name;
+        panel.classList.toggle("is-active", active);
+        panel.hidden = !active;
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function currentQuestion() {
+      return auditQuestions[step];
+    }
+
+    function renderQuestion() {
+      const q = currentQuestion();
+      if (!q || !els.question || !els.options || !els.stepLabel || !els.progressBar) return;
+
+      els.stepLabel.textContent = `Question ${step + 1} / ${auditQuestions.length}`;
+      els.progressBar.style.width = `${((step + 1) / auditQuestions.length) * 100}%`;
+      els.question.textContent = q.text;
+      els.options.innerHTML = "";
+
+      const saved = answers[q.id];
+      const isMulti = q.type === "multi";
+
+      q.options.forEach((opt) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "audit-option";
+        btn.dataset.id = opt.id;
+        btn.textContent = opt.label;
+
+        const selected =
+          isMulti && Array.isArray(saved)
+            ? saved.includes(opt.id)
+            : saved === opt.id;
+
+        if (selected) btn.classList.add("is-selected");
+        els.options?.appendChild(btn);
+      });
+
+      if (els.next) {
+        els.next.hidden = !isMulti;
+        els.next.disabled = isMulti && (!Array.isArray(saved) || saved.length === 0);
+      }
+    }
+
+    function selectOption(questionId, optionId, multi) {
+      const q = auditQuestions.find((item) => item.id === questionId);
+      if (!q) return;
+
+      if (multi) {
+        const current = Array.isArray(answers[questionId]) ? [...answers[questionId]] : [];
+        const idx = current.indexOf(optionId);
+        if (idx >= 0) current.splice(idx, 1);
+        else current.push(optionId);
+        answers[questionId] = current;
+        renderQuestion();
+        return;
+      }
+
+      answers[questionId] = optionId;
+      if (step < auditQuestions.length - 1) {
+        step += 1;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function renderBar(score, el) {
+      if (!el) return;
+      const filled = Math.round(score / 10);
+      el.textContent = "█".repeat(filled) + "░".repeat(10 - filled);
+    }
+
+    function showResults() {
+      const result = computeAuditResult(answers);
+      showPanel("results");
+
+      if (els.overall) els.overall.textContent = `${result.overall} / 100`;
+      renderBar(result.overall, els.bar);
+      if (els.level) els.level.textContent = `${result.level.emoji} ${result.level.label}`;
+      if (els.summary) els.summary.textContent = result.level.summary;
+
+      if (els.dimensions) {
+        els.dimensions.innerHTML = "";
+        Object.entries(result.dimensions).forEach(([key, score]) => {
+          const card = document.createElement("article");
+          card.className = "audit-dim";
+          card.innerHTML = `
+            <div class="audit-dim-top">
+              <span>${dimensionLabels[key]}</span>
+              <strong>${score}</strong>
+            </div>
+            <div class="audit-dim-bar"><i style="width:${score}%"></i></div>
+          `;
+          els.dimensions?.appendChild(card);
+        });
+      }
+
+      const fillList = (ul, items, prefix = "") => {
+        if (!ul) return;
+        ul.innerHTML = "";
+        items.forEach((text) => {
+          const li = document.createElement("li");
+          li.textContent = prefix ? `${prefix} ${text}` : text;
+          ul.appendChild(li);
+        });
+      };
+
+      fillList(els.strengths, result.strengths, "✅");
+      fillList(els.improvements, result.improvements, "⚠️");
+
+      if (els.potential) {
+        els.potential.textContent = `Selon vos réponses, vous pourriez économiser jusqu’à ${result.hoursSaved} heures par mois en centralisant documents, validations et échanges clients.`;
+      }
+      if (els.recommendation) {
+        els.recommendation.textContent = result.recommendation;
+      }
+      if (els.priority) {
+        els.priority.textContent = result.priorityLine;
+      }
+    }
+
+    document.getElementById("audit-start")?.addEventListener("click", () => {
+      step = 0;
+      Object.keys(answers).forEach((k) => delete answers[k]);
+      showPanel("questions");
+      renderQuestion();
+    });
+
+    document.getElementById("audit-restart")?.addEventListener("click", () => {
+      step = 0;
+      Object.keys(answers).forEach((k) => delete answers[k]);
+      showPanel("intro");
+    });
+
+    els.back?.addEventListener("click", () => {
+      if (step > 0) {
+        step -= 1;
+        renderQuestion();
+        return;
+      }
+      showPanel("intro");
+    });
+
+    els.next?.addEventListener("click", () => {
+      const q = currentQuestion();
+      if (!q || q.type !== "multi") return;
+      const selected = answers[q.id];
+      if (!Array.isArray(selected) || selected.length === 0) return;
+
+      if (step < auditQuestions.length - 1) {
+        step += 1;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    els.options?.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLButtonElement) || !target.classList.contains("audit-option")) return;
+      const q = currentQuestion();
+      if (!q) return;
+      selectOption(q.id, target.dataset.id || "", q.type === "multi");
+    });
+  </script>
+</BaseLayout>

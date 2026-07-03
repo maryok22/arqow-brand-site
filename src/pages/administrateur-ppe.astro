@@ -1,0 +1,28 @@
+---
+import ProfessionLanding from "../components/ProfessionLanding.astro";
+---
+
+<ProfessionLanding
+  title="Portail client pour administrateur PPE — Arqow"
+  description="Communications, procès-verbaux, demandes copropriétaires et historiques pour administrateurs PPE en Suisse."
+  canonical="https://arqow.com/administrateur-ppe/"
+  kicker="Administrateurs PPE"
+  headline="Vos copropriétaires trouvent l’info sans vous appeler."
+  lead="PV, communications, demandes et documents regroupés par copropriété — pour réduire les appels répétitifs et structurer le suivi."
+  pains={[
+    { title: "Les mêmes questions reviennent sans cesse", text: "PV, budgets, travaux : les copropriétaires ne savent pas où chercher l’information." },
+    { title: "Les demandes arrivent par tous les canaux", text: "Email, téléphone, courrier : difficile de suivre qui a demandé quoi, et quand." },
+    { title: "La traçabilité est essentielle", text: "Chaque communication et chaque document sensible doit pouvoir être retrouvé." }
+  ]}
+  workflow={[
+    { time: "Étape 1", title: "Publier pour la copropriété", text: "PV, infos ou documents mis à disposition dans l’espace de la PPE." },
+    { time: "Étape 2", title: "Informer les copropriétaires", text: "Chacun sait où consulter les dernières communications." },
+    { time: "Étape 3", title: "Traiter les demandes", text: "Une demande devient un ticket suivi, relié au bon dossier PPE." },
+    { time: "Étape 4", title: "Archiver l’historique", text: "Export complet pour conserver documents, messages et journal d’activité." }
+  ]}
+  examples={[
+    { label: "PV", title: "Procès-verbal d’assemblée", text: "Le PV est publié et consultable par les copropriétaires depuis leur espace." },
+    { label: "Demande", title: "Travaux ou autorisation", text: "Une demande copropriétaire est catégorisée, suivie et historisée." },
+    { label: "Communication", title: "Info copropriété", text: "Actualités et messages importants centralisés, sans renvoi d’email en chaîne." }
+  ]}
+/>

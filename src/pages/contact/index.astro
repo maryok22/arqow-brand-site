@@ -1,0 +1,186 @@
+---
+import ContactAppLayout from "../../layouts/ContactAppLayout.astro";
+---
+
+<ContactAppLayout
+  title="Support Arqow — Contact"
+  description="Une question pendant votre essai ? Créez une demande support Arqow."
+  canonical="https://arqow.com/contact/"
+>
+  <div class="contact-app">
+    <aside class="contact-app-side contact-app-side-min">
+      <a class="contact-brand" href="/">
+        <img src="/assets/logo-dark.png" alt="Arqow" />
+        <span>Arqow</span>
+      </a>
+      <a class="contact-side-link" href="/">← Retour au site</a>
+    </aside>
+
+    <main class="contact-app-main">
+      <form
+        class="contact-wizard"
+        id="contact-wizard"
+        name="contact-ticket"
+        method="POST"
+        action="/contact/merci/"
+      >
+        <input type="hidden" name="category" id="field-category" value="" />
+
+        <div class="wizard-progress" aria-hidden="true">
+          <span class="wizard-dot is-on" data-dot="1"></span>
+          <span class="wizard-dot" data-dot="2"></span>
+          <span class="wizard-dot" data-dot="3"></span>
+          <span class="wizard-dot" data-dot="4"></span>
+        </div>
+
+        <div class="wizard-step is-active" data-step="1">
+          <p class="wizard-greeting" id="wizard-greeting">Bonjour,</p>
+          <h1>Avec quelle catégorie puis-je vous aider ?</h1>
+          <div class="category-grid" role="group" aria-label="Catégorie">
+            <button class="category-card" type="button" data-category="Découvrir Arqow">Découvrir Arqow</button>
+            <button class="category-card" type="button" data-category="Tarifs et offres">Tarifs et offres</button>
+            <button class="category-card" type="button" data-category="Aide pendant mon essai">Aide pendant mon essai</button>
+            <button class="category-card" type="button" data-category="Offre sur mesure">Offre sur mesure</button>
+            <button class="category-card" type="button" data-category="Autre">Autre</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="2">
+          <button class="wizard-back" type="button" data-back>← Retour</button>
+          <h2>Comment vous appelez-vous ?</h2>
+          <div class="wizard-fields">
+            <label class="wizard-field" for="firstname">
+              <span>Prénom</span>
+              <input id="firstname" name="firstname" required placeholder="Jean" />
+            </label>
+            <label class="wizard-field" for="lastname">
+              <span>Nom</span>
+              <input id="lastname" name="lastname" required placeholder="Dupont" />
+            </label>
+            <label class="wizard-field full" for="company">
+              <span>Entreprise <em>(optionnel)</em></span>
+              <input id="company" name="company" placeholder="Régie Dupont SA" />
+            </label>
+          </div>
+          <button class="btn primary wizard-next" type="button" data-next>Continuer</button>
+        </div>
+
+        <div class="wizard-step" data-step="3">
+          <button class="wizard-back" type="button" data-back>← Retour</button>
+          <h2>Votre message</h2>
+          <label class="wizard-field full" for="message">
+            <span>Décrivez votre demande</span>
+            <textarea id="message" name="message" required placeholder="Écrivez votre message ici…"></textarea>
+          </label>
+          <button class="btn primary wizard-next" type="button" data-next>Continuer</button>
+        </div>
+
+        <div class="wizard-step" data-step="4">
+          <button class="wizard-back" type="button" data-back>← Retour</button>
+          <h2>Presque terminé</h2>
+          <label class="wizard-field full" for="email">
+            <span>Votre email</span>
+            <input id="email" name="email" type="email" required placeholder="vous@entreprise.ch" />
+          </label>
+          <label class="wizard-consent">
+            <input type="checkbox" name="consent" value="oui" required />
+            <span>J’accepte que mes données soient traitées conformément à la <a href="/confidentialite/" target="_blank">politique de confidentialité</a>.</span>
+          </label>
+          <button class="btn primary" type="submit">Envoyer</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const hour = new Date().getHours();
+    const greeting = document.getElementById('wizard-greeting');
+    if (greeting) {
+      greeting.textContent = hour >= 18 || hour < 6 ? 'Bonsoir,' : 'Bonjour,';
+    }
+
+    const wizard = document.getElementById('contact-wizard');
+    const steps = wizard?.querySelectorAll('.wizard-step');
+    const dots = wizard?.querySelectorAll('.wizard-dot');
+    const categoryInput = document.getElementById('field-category');
+    let currentStep = 1;
+
+    function showStep(n) {
+      currentStep = n;
+      steps?.forEach((step) => {
+        step.classList.toggle('is-active', Number(step.dataset.step) === n);
+      });
+      dots?.forEach((dot) => {
+        const i = Number(dot.dataset.dot);
+        dot.classList.toggle('is-on', i <= n);
+        dot.classList.toggle('is-current', i === n);
+      });
+    }
+
+    function validateStep(n) {
+      const step = wizard?.querySelector(`[data-step="${n}"]`);
+      if (!step) return true;
+      const fields = step.querySelectorAll('input, textarea, select');
+      for (const field of fields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    wizard?.querySelectorAll('.category-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        if (categoryInput) categoryInput.value = card.dataset.category || '';
+        wizard?.querySelectorAll('.category-card').forEach((c) => c.classList.remove('is-selected'));
+        card.classList.add('is-selected');
+        showStep(2);
+      });
+    });
+
+    wizard?.querySelectorAll('[data-next]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (!validateStep(currentStep)) return;
+        showStep(currentStep + 1);
+      });
+    });
+
+    wizard?.querySelectorAll('[data-back]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        showStep(currentStep > 1 ? currentStep - 1 : 1);
+      });
+    });
+
+    wizard?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!validateStep(currentStep)) return;
+
+      const submitBtn = wizard.querySelector('[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi…';
+      }
+
+      const formData = new FormData(wizard);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error('send_failed');
+        window.location.href = '/contact/merci/';
+      } catch {
+        alert('L’envoi a échoué. Réessayez ou écrivez à contact@arqow.com');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Envoyer';
+        }
+      }
+    });
+  </script>
+</ContactAppLayout>

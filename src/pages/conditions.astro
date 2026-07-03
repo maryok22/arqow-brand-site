@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { publisher, arqow } from "../data/legal.ts";
+---
+
+<BaseLayout
+  title="Conditions d’utilisation — Arqow"
+  description="Conditions générales d’utilisation du service Arqow, portail client suisse édité par EvoSwiss."
+  canonical="https://arqow.com/conditions/"
+>
+  <Header />
+  <main>
+    <section class="section legal-page">
+      <div class="container legal-content">
+        <p class="kicker">Légal</p>
+        <h1 class="page-title">Conditions d’utilisation</h1>
+        <p class="lead">Conditions applicables à l’utilisation du service {arqow.name} et du site {arqow.site}.</p>
+
+        <h2>1. Éditeur</h2>
+        <p>
+          Le service {arqow.name} est édité par <strong>{publisher.brand}</strong>,
+          {publisher.address}, UID {publisher.uid}.
+          <a href="/mentions-legales/">Informations légales complètes</a>.
+        </p>
+
+        <h2>2. Objet</h2>
+        <p>
+          {arqow.name} est un portail client en ligne permettant aux professionnels de gérer dossiers, documents,
+          validations et échanges avec leurs clients. Le service complète les outils métier existants ; il ne se substitue
+          pas à un ERP, une régie logicielle ou un outil comptable.
+        </p>
+
+        <h2>3. Accès et compte</h2>
+        <p>
+          L’accès nécessite la création d’un compte. L’utilisateur garantit l’exactitude des informations fournies
+          et la confidentialité de ses identifiants. Toute activité réalisée via le compte est réputée effectuée
+          par l’utilisateur ou sous sa responsabilité.
+        </p>
+
+        <h2>4. Essai gratuit</h2>
+        <p>
+          Un premier mois gratuit peut être proposé sans carte bancaire au démarrage. À l’issue de cette période,
+          l’utilisateur peut souscrire à une offre payante ou cesser d’utiliser le service. Les modalités tarifaires
+          en vigueur sont publiées sur {arqow.site}.
+        </p>
+
+        <h2>5. Usage autorisé</h2>
+        <p>L’utilisateur s’engage à :</p>
+        <ul>
+          <li>Utiliser le service dans un cadre professionnel licite</li>
+          <li>Ne pas porter atteinte à la sécurité ou à l’intégrité du service</li>
+          <li>Ne pas publier de contenus illicites, diffamatoires ou portant atteinte aux droits de tiers</li>
+          <li>Obtenir les autorisations nécessaires pour les données et documents importés</li>
+        </ul>
+
+        <h2>6. Responsabilité de l’utilisateur</h2>
+        <p>
+          L’utilisateur est seul responsable des contenus publiés, des accès accordés à ses clients, des décisions
+          prises sur la base du service et de la conformité de son activité avec la réglementation applicable
+          (immobilier, protection des données, archivage, etc.).
+        </p>
+
+        <h2>7. Disponibilité du service</h2>
+        <p>
+          {publisher.brand} s’efforce d’assurer une disponibilité continue du service mais ne garantit pas
+          une accessibilité ininterrompue. Des opérations de maintenance, mises à jour ou événements indépendants
+          de sa volonté raisonnable peuvent entraîner des interruptions temporaires.
+        </p>
+
+        <h2>8. Propriété des données</h2>
+        <p>
+          L’utilisateur conserve la propriété de ses données et contenus. Il peut les exporter conformément aux
+          fonctionnalités du service. {publisher.brand} n’acquiert aucun droit de propriété sur les contenus
+          importés par l’utilisateur, hors licence technique limitée nécessaire à l’exécution du service.
+        </p>
+
+        <h2>9. Limitation de responsabilité</h2>
+        <p>
+          Dans les limites autorisées par le droit suisse, {publisher.brand} ne pourra être tenue responsable
+          des dommages indirects, pertes de chiffre d’affaires, pertes de données imputables à l’utilisateur,
+          erreurs de configuration, ou préjudices résultant d’une mauvaise utilisation du service.
+        </p>
+        <p>
+          En tout état de cause, la responsabilité totale de {publisher.brand} au titre du service, pour une
+          période de douze mois, est limitée au montant effectivement payé par l’utilisateur au cours des douze
+          derniers mois, sauf faute grave ou intentionnelle prouvée.
+        </p>
+
+        <h2>10. Résiliation</h2>
+        <p>
+          L’utilisateur peut cesser d’utiliser le service à tout moment. {publisher.brand} peut suspendre ou
+          résilier un compte en cas de violation des présentes conditions ou d’usage abusif, après notification
+          lorsque cela est raisonnablement possible.
+        </p>
+
+        <h2>11. Modifications</h2>
+        <p>
+          {publisher.brand} peut modifier les présentes conditions. Les utilisateurs seront informés des
+          modifications substantielles via le site ou par email. L’utilisation continue du service vaut acceptation
+          des conditions mises à jour.
+        </p>
+
+        <h2>12. Droit applicable</h2>
+        <p>
+          Les présentes conditions sont régies par le droit suisse. For exclusif : tribunaux de {publisher.jurisdiction},
+          sous réserve de dispositions impératives.
+        </p>
+
+        <h2>13. Contact</h2>
+        <p>
+          <a href={`mailto:${arqow.contactEmail}`}>{arqow.contactEmail}</a> ·
+          <a href={publisher.website} target="_blank" rel="noopener">{publisher.website}</a>
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

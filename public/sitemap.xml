@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://arqow.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://arqow.com/regie-immobiliere/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://arqow.com/architecte/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://arqow.com/courtier-immobilier/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://arqow.com/administrateur-ppe/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://arqow.com/fonctionnalites/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://arqow.com/gestion-documentaire/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://arqow.com/portail-client/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://arqow.com/support-client/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://arqow.com/tarifs/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://arqow.com/audit/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://arqow.com/contact/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://arqow.com/mentions-legales/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://arqow.com/confidentialite/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://arqow.com/conditions/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+</urlset>

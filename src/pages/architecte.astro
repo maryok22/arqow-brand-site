@@ -1,0 +1,28 @@
+---
+import ProfessionLanding from "../components/ProfessionLanding.astro";
+---
+
+<ProfessionLanding
+  title="Portail client pour architecte — Arqow"
+  description="Un espace projet clair pour plans, versions, choix clients et validations dans un bureau d’architecture suisse."
+  canonical="https://arqow.com/architecte/"
+  kicker="Architectes"
+  headline="Vos clients suivent le projet sans vous relancer."
+  lead="Plans, versions, choix et validations réunis dans un portail sobre — pour que le client sache toujours quoi consulter et quoi décider."
+  pains={[
+    { title: "Les versions de plans se mélangent", text: "Plan A, plan B, retouches : le client ne sait plus quelle version est la bonne." },
+    { title: "Les décisions manquent de trace", text: "Un choix de matériau ou un avenant doit pouvoir être retrouvé, daté et compris." },
+    { title: "Les échanges projet sont dispersés", text: "Emails, WhatsApp, appels : l’information utile n’est pas au même endroit que les documents." }
+  ]}
+  workflow={[
+    { time: "Étape 1", title: "Publier la version", text: "Un plan ou un document projet est mis en ligne dans le dossier client." },
+    { time: "Étape 2", title: "Notifier le client", text: "Le client sait qu’une nouvelle pièce attend son attention." },
+    { time: "Étape 3", title: "Recueillir le retour", text: "Question ou validation directement dans le dossier, reliée au bon document." },
+    { time: "Étape 4", title: "Conserver l’historique", text: "Chaque version et chaque décision restent lisibles pour toute l’équipe." }
+  ]}
+  examples={[
+    { label: "Plans", title: "Avant-projet et versions", text: "Le client consulte la bonne version, commente et valide sans confusion." },
+    { label: "Choix", title: "Décisions matériaux ou options", text: "Les choix client sont centralisés et traçables dans le dossier projet." },
+    { label: "Support", title: "Question sur un plan", text: "Une demande devient un ticket clair, assigné et relié au bon dossier." }
+  ]}
+/>

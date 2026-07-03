@@ -1,0 +1,139 @@
+---
+import "../styles/global.css";
+
+const siteUrl = "https://arqow.com";
+
+const {
+  title = "Arqow — Portail client suisse pour régies, architectes et immobilier",
+  description = "Arqow est le portail client suisse pour régies, architectes, courtiers et administrateurs PPE. Centralisez dossiers, documents, validations et échanges clients. Premier mois gratuit.",
+  canonical = `${siteUrl}/`,
+  robots = "index,follow",
+  ogImage = `${siteUrl}/assets/og-arqow.jpg`,
+  faqItems = null,
+  extraJsonLd = null
+} = Astro.props;
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Arqow",
+  "legalName": "EvoSwiss",
+  "url": siteUrl,
+  "logo": `${siteUrl}/assets/logo-dark.png`,
+  "description": "Portail client suisse pour les professionnels de l'immobilier en Suisse.",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Switzerland"
+  },
+  "knowsLanguage": ["fr-CH", "fr"],
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "EvoSwiss",
+    "url": "https://evoswiss.ch"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "contact@arqow.com",
+    "availableLanguage": ["French"]
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Arqow",
+  "url": siteUrl,
+  "inLanguage": "fr-CH",
+  "description": description,
+  "publisher": {
+    "@type": "Organization",
+    "name": "EvoSwiss",
+    "url": "https://evoswiss.ch"
+  }
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Arqow",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://app.arqow.com",
+  "description": "Portail client suisse pour régies immobilières, architectes, courtiers et administrateurs PPE.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Essentiel",
+      "price": "59",
+      "priceCurrency": "CHF",
+      "description": "Premier mois gratuit, puis CHF 59 par mois"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "119",
+      "priceCurrency": "CHF",
+      "description": "Premier mois gratuit, puis CHF 119 par mois"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "EvoSwiss",
+    "url": "https://evoswiss.ch"
+  },
+  "areaServed": "CH"
+};
+
+const faqSchema = faqItems ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
+const extraSchemas = Array.isArray(extraJsonLd) ? extraJsonLd : extraJsonLd ? [extraJsonLd] : [];
+const jsonLd = [organizationSchema, websiteSchema, softwareSchema, faqSchema, ...extraSchemas].filter(Boolean);
+---
+
+<!doctype html>
+<html lang="fr-CH">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content="EvoSwiss" />
+    <meta name="language" content="fr-CH" />
+    <meta name="geo.region" content="CH" />
+    <meta name="geo.placename" content="Suisse" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr-CH" href={canonical} />
+    <link rel="alternate" hreflang="fr" href={canonical} />
+    <link rel="icon" href="/assets/icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta name="theme-color" content="#1A7A52" />
+    <meta property="og:site_name" content="Arqow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_CH" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

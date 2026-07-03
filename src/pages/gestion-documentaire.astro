@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout
+  title="Gestion documentaire immobilier — Arqow"
+  description="Gérez les documents clients de l’immobilier avec Arqow : versions, validations, historique et export ZIP. Pensé pour régies, architectes et courtiers suisses."
+  canonical="https://arqow.com/gestion-documentaire/"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container" style="max-width:940px">
+        <p class="kicker">Documents</p>
+        <h1 class="page-title">Gestion documentaire pour l’immobilier</h1>
+        <p class="lead">Publiez, versionnez et faites valider vos documents dans le bon dossier client — avec un historique lisible et un export complet.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://app.arqow.com/register">Essayer gratuitement</a>
+          <a class="btn secondary" href="/#fonctionnalites">Voir les fonctionnalités</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
