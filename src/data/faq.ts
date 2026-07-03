@@ -16,7 +16,7 @@ export const homeFaq = [
     answer: "Oui. Export ZIP complet par dossier ou par client : documents, messages et historique inclus."
   },
   {
-    question: "Arqow fonctionne-t-il sur mobile ?",
-    answer: "Oui. L’espace client et votre interface fonctionnent sur ordinateur, tablette et smartphone."
+    question: "Mes clients peuvent-ils y accéder depuis iPhone, Android ou ordinateur ?",
+    answer: "Oui. Arqow fonctionne sur Mac, PC, iPhone et Android — sans installation à prévoir. Vos clients ouvrent leur espace depuis Safari, Chrome ou tout navigateur récent, au bureau comme en déplacement. Votre équipe utilise la même interface, sur tous les appareils."
   }
 ];
