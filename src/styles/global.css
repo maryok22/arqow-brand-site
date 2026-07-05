@@ -640,6 +640,14 @@ h1{
 .category-grid{display:grid;gap:10px}
 .contact-app-side-min .contact-side-link{font-size:14px;color:var(--muted);margin-top:auto;display:inline-block}
 .contact-app-side-min .contact-side-link:hover{color:var(--ink)}
+.contact-client-note{
+  margin:20px 0 0;font-size:13px;line-height:1.5;color:var(--muted);
+}
+.contact-client-note a{color:var(--cta);font-weight:780;text-decoration:underline;text-underline-offset:3px}
+.contact-existing-client{
+  margin:0 0 20px;font-size:14px;line-height:1.5;color:var(--muted);
+}
+.contact-existing-client a{color:var(--cta);font-weight:780;text-decoration:underline;text-underline-offset:3px}
 .wizard-progress{display:flex;gap:8px;margin-bottom:28px}
 .wizard-dot{
   flex:1;height:4px;border-radius:99px;background:#E2E8F0;transition:background .3s ease;

@@ -14,6 +14,10 @@ import ContactAppLayout from "../../layouts/ContactAppLayout.astro";
         <span>Arqow</span>
       </a>
       <a class="contact-side-link" href="/">← Retour au site</a>
+      <p class="contact-client-note">
+        Déjà client ? Passez par votre portail :
+        <a href="https://help.arqow.com/" target="_blank" rel="noopener">help.arqow.com</a>
+      </p>
     </aside>
 
     <main class="contact-app-main">
@@ -36,6 +40,11 @@ import ContactAppLayout from "../../layouts/ContactAppLayout.astro";
         <div class="wizard-step is-active" data-step="1">
           <p class="wizard-greeting" id="wizard-greeting">Bonjour,</p>
           <h1>Avec quelle catégorie puis-je vous aider ?</h1>
+          <p class="contact-existing-client">
+            Déjà client Arqow ? Ouvrez votre demande sur
+            <a href="https://help.arqow.com/" target="_blank" rel="noopener">help.arqow.com</a>
+            — ce formulaire est réservé aux prospects et aux essais.
+          </p>
           <div class="category-grid" role="group" aria-label="Catégorie">
             <button class="category-card" type="button" data-category="Découvrir Arqow">Découvrir Arqow</button>
             <button class="category-card" type="button" data-category="Tarifs et offres">Tarifs et offres</button>
