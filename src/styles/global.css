@@ -58,6 +58,8 @@ button,input,select,textarea{font:inherit}
 .pill{height:42px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:rgba(255,255,255,.62);font-size:14px;font-weight:720}
 .pill.dark{background:var(--cta);color:white;border-color:var(--cta)}
 .pill.dark:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
+.pill.pill-client{background:rgba(255,255,255,.5);color:var(--ink)}
+.pill.pill-client:hover{background:white;border-color:rgba(26,122,82,.25)}
 .kicker{
   color:var(--muted);
   text-transform:uppercase;
@@ -681,7 +683,13 @@ h1{
 .wizard-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .wizard-next,.contact-wizard .btn.primary{margin-top:8px}
 .wizard-footnote{margin:12px 0 0;font-size:13px;color:var(--muted)}
-.contact-success{text-align:center;padding:48px 32px}
+.contact-hub-card{
+  border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin-bottom:14px;
+}
+.contact-hub-card.muted{background:#FAFBFD}
+.contact-hub-card h2{font-size:18px;letter-spacing:-.02em;margin:0 0 8px}
+.contact-hub-card p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.55}
+.contact-hub .kicker{margin-bottom:10px}
 .success-icon{
   width:56px;height:56px;border-radius:50%;background:var(--green);color:white;
   display:grid;place-items:center;font-size:24px;font-weight:900;margin:0 auto 20px;
@@ -733,7 +741,7 @@ h1{
   .container{width:min(100% - 28px,1200px)}
   .price-free{font-size:34px}
   .header-inner{height:68px}
-  .header-actions .pill:first-child{display:none}
+  .header-actions .pill-client{display:none}
   h1,.page-title{font-size:clamp(34px,9vw,48px)}
   .section-title{font-size:clamp(34px,10vw,52px)}
   .lead,.section-lead{font-size:18px}
